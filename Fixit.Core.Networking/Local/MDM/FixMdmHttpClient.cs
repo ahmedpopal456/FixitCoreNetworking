@@ -16,7 +16,7 @@ namespace Fixit.Core.Networking.Local.MDM
             _httpClientCore = httpClientCore ?? throw new ArgumentNullException($"{nameof(FixMdmHttpClient)} expects a value for {nameof(httpClientCore)}... null argument was provided");
         }
 
-        public async Task<IEnumerable<WorkTypeDto>> GetWorkCategoriesAsync(CancellationToken cancellationToken, string categoryName = null, string minTimestampUtc = null, string maxTimestampUtc = null)
+        public async Task<IEnumerable<WorkCategoryDto>> GetWorkCategoriesAsync(CancellationToken cancellationToken, string categoryName = null, string minTimestampUtc = null, string maxTimestampUtc = null)
         {
             var properties = _httpClientCore.BuildHttpProperties();
 
@@ -34,15 +34,15 @@ namespace Fixit.Core.Networking.Local.MDM
                 queryParameters.Add("maxTimestampUtc", maxTimestampUtc);
             }
 
-            return await _httpClientCore.GetResultAsync<IEnumerable<WorkTypeDto>>(QueryHelpers.AddQueryString($"api/workcategories", queryParameters), cancellationToken, properties);
+            return await _httpClientCore.GetResultAsync<IEnumerable<WorkCategoryDto>>(QueryHelpers.AddQueryString($"api/workcategories", queryParameters), cancellationToken, properties);
 
         }
 
-        public async Task<WorkTypeDto> GetWorkCategoryByIdAsync(Guid workId, CancellationToken cancellationToken)
+        public async Task<WorkCategoryDto> GetWorkCategoryByIdAsync(Guid workId, CancellationToken cancellationToken)
         {
             var properties = _httpClientCore.BuildHttpProperties();
 
-            return await _httpClientCore.GetResultAsync<WorkTypeDto>($"api/workcategories/{workId}", cancellationToken, properties);
+            return await _httpClientCore.GetResultAsync<WorkCategoryDto>($"api/workcategories/{workId}", cancellationToken, properties);
         }
 
 
