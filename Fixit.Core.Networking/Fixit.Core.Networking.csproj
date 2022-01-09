@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fixit.Core.DataContracts" Version="1.0.89-alpha" />
+    <PackageReference Include="Fixit.Core.DataContracts" Version="1.0.0-pre-alpha339-118" />
   </ItemGroup>
 
 </Project>
